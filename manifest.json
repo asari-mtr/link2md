@@ -1,0 +1,10 @@
+{
+  "name" : "",
+  "version": "0.1",
+  "description": "Copy all the links included in the selected text as markdown format text to clipbord.",
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "manifest_version": 2
+}
