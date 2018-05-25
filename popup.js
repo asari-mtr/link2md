@@ -21,8 +21,24 @@ linkTexts;
         `
         },
       function(results) {
+        const background = chrome.extension.getBackgroundPage();
+
         // TODO: I can only get it for the first time
-        chrome.extension.getBackgroundPage().console.log(results);
+        background.console.log(results);
+
+        var result = false;
+        var textarea = background.document.getElementById('ta');
+        textarea.value = "Hello clipboard";
+        textarea.select();
+
+        if (background.document.execCommand('copy')) {
+          resutl = true;
+        } else {
+          background.console.error('failed to get clipboard content');
+        }
+
+        textarea.value = '';
+        return result;
       }
     );
   });
