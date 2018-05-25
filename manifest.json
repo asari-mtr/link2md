@@ -2,9 +2,13 @@
   "name" : "",
   "version": "0.1",
   "description": "Copy all the links included in the selected text as markdown format text to clipbord.",
+  "permissions": ["declarativeContent"],
   "background": {
     "scripts": ["background.js"],
     "persistent": false
+  },
+  "page_action": {
+    "default_popup": "popup.html"
   },
   "manifest_version": 2
 }
