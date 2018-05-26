@@ -4,25 +4,7 @@ copyAsMd.onclick = function(e) {
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     chrome.tabs.executeScript(
       tabs[0].id,
-      {code:
-        `
-var selection = window.getSelection()
-
-var dom = selection.getRangeAt(0).cloneContents();
-
-var links = dom.querySelectorAll('a');
-
-var linkHref = [];
-var linkTexts = [];
-for (const link of links) {
-  const href = link.getAttribute('href');
-  const text = link.text;
-  const list = "- [ ] [" + text + "](" + href + ")";
-  linkTexts.push(list);
-}
-linkTexts.join('\\n');
-        `
-        },
+      {file: "get-link-script.js"},
       function(results) {
         const background = chrome.extension.getBackgroundPage();
 
