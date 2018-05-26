@@ -6,11 +6,11 @@ copyAsMd.onclick = function(e) {
       tabs[0].id,
       {code:
         `
-const selection = window.getSelection()
+var selection = window.getSelection()
 
-const dom = selection.getRangeAt(0).cloneContents();
+var dom = selection.getRangeAt(0).cloneContents();
 
-const links = dom.querySelectorAll('a');
+var links = dom.querySelectorAll('a');
 
 var linkHref = [];
 var linkTexts = [];
@@ -25,10 +25,6 @@ linkTexts.join('\\n');
         },
       function(results) {
         const background = chrome.extension.getBackgroundPage();
-
-        // TODO: I can only get it for the first time
-        // background.console.log(results.join('&#13b;');
-        background.console.log(results);
 
         var result = false;
         var textarea = background.document.getElementById('ta');
