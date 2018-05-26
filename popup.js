@@ -12,23 +12,27 @@ const dom = selection.getRangeAt(0).cloneContents();
 
 const links = dom.querySelectorAll('a');
 
+var linkHref = [];
 var linkTexts = [];
 for (const link of links) {
   const href = link.getAttribute('href');
-  linkTexts.push(href);
+  const text = link.text;
+  const list = "- [ ] [" + text + "](" + href + ")";
+  linkTexts.push(list);
 }
-linkTexts;
+linkTexts.join('\\n');
         `
         },
       function(results) {
         const background = chrome.extension.getBackgroundPage();
 
         // TODO: I can only get it for the first time
+        // background.console.log(results.join('&#13b;');
         background.console.log(results);
 
         var result = false;
         var textarea = background.document.getElementById('ta');
-        textarea.value = "Hello clipboard";
+        textarea.value = results;
         textarea.select();
 
         if (background.document.execCommand('copy')) {
