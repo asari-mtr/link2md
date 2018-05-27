@@ -5,7 +5,7 @@ var links = dom.querySelectorAll('a');
 var linkTexts = [];
 for (const link of links) {
   const href = link.getAttribute('href');
-  const text = link.text;
+  const text = link.text.trim();
   const list = "- [ ] [" + text + "](" + href + ")";
   linkTexts.push(list);
 }
