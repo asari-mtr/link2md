@@ -1,6 +1,24 @@
 'use strict';
 
+var contextMenuItem = {
+    "id": "linkAsMarkdown",
+    "title": "copy link as markdown",
+    "contexts": ["selection"]
+}
+
+chrome.contextMenus.create(contextMenuItem);
+
+chrome.contextMenus.onClicked.addListener(function(clickData) {
+  if (clickData.menuItemId == "linkAsMarkdown" && clickData.selectionText) {
+    linkAsMarkdown();
+  }
+})
+
 chrome.browserAction.onClicked.addListener(function(tab) {
+  linkAsMarkdown();
+});
+
+function linkAsMarkdown() {
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     chrome.tabs.executeScript(
       tabs[0].id,
@@ -24,4 +42,4 @@ chrome.browserAction.onClicked.addListener(function(tab) {
       }
     );
   });
-});
+}
