@@ -6,6 +6,9 @@ var origin = location.origin;
 var linkTexts = [];
 for (const link of links) {
   var href = link.getAttribute('href');
+  if (href.startsWith("javascript:")) {
+    continue;
+  }
   if (href.startsWith("/") || href.startsWith("#")) {
     href = origin.concat(href);
   }
