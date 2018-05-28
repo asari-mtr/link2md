@@ -12,7 +12,10 @@ for (const link of links) {
   if (href.startsWith("/") || href.startsWith("#")) {
     href = origin.concat(href);
   }
-  const text = link.text.trim();
+  var text = link.text.trim();
+  if (text.length == 0) {
+      text = href;
+  }
   const list = "- [ ] [" + text + "](" + href + ")";
   linkTexts.push(list);
 }
