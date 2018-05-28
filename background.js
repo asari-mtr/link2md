@@ -1,12 +1,27 @@
 'use strict';
 
-chrome.runtime.onInstalled.addListener(function() {
-  chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
-    chrome.declarativeContent.onPageChanged.addRules([{
-      conditions: [new chrome.declarativeContent.PageStateMatcher({
-        pageUrl: {schemes: ['http', 'https']},
-      })],
-      actions: [new chrome.declarativeContent.ShowPageAction()]
-    }]);
+chrome.browserAction.onClicked.addListener(function(tab) {
+  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    chrome.tabs.executeScript(
+      tabs[0].id,
+      {file: "get-link-script.js"},
+      function(results) {
+        const background = chrome.extension.getBackgroundPage();
+
+        var result = false;
+        var textarea = background.document.getElementById('ta');
+        textarea.value = results;
+        textarea.select();
+
+        if (background.document.execCommand('copy')) {
+          result = true;
+        } else {
+          background.console.error('failed to get clipboard content');
+        }
+
+        textarea.value = '';
+        return result;
+      }
+    );
   });
 });

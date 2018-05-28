@@ -2,13 +2,13 @@
   "name" : "",
   "version": "0.1",
   "description": "Copy all the links included in the selected text as markdown format text to clipbord.",
-  "permissions": ["clipboardWrite", "activeTab", "declarativeContent"],
+  "permissions": ["clipboardWrite", "tabs", "http://*/*", "https://*/*"],
   "background": {
     "page": "background.html",
     "persistent": false
   },
-  "page_action": {
-    "default_popup": "popup.html"
+  "browser_action": {
+    "default_title": "copy link as markdown"
   },
   "manifest_version": 2
 }
