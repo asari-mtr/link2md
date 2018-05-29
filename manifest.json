@@ -18,7 +18,7 @@
     "persistent": false
   },
   "browser_action": {
-    "default_title": "copy link as markdown",
+    "default_title": "Copy link as markdown",
     "default_icon": {
         "16": "images/icon16.png",
         "24": "images/icon24.png",

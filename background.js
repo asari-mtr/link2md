@@ -2,7 +2,7 @@
 
 var contextMenuItem = {
     "id": "linkAsMarkdown",
-    "title": "copy link as markdown",
+    "title": "Copy link as markdown",
     "contexts": ["selection"]
 }
 
