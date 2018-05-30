@@ -1,5 +1,5 @@
 {
-  "name" : "",
+  "name" : "link2md",
   "version": "0.1",
   "description": "Copy all the links included in the selected text as markdown format text to clipbord.",
   "icons": {
