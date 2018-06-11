@@ -2,6 +2,7 @@ var selection = window.getSelection();
 var dom = selection.getRangeAt(0).cloneContents();
 var links = dom.querySelectorAll('a');
 var origin = location.origin;
+var pathname = location.pathname;
 
 var linkTexts = [];
 for (const link of links) {
@@ -12,8 +13,11 @@ for (const link of links) {
   if (href.startsWith("javascript:")) {
     continue;
   }
-  if (href.startsWith("/") || href.startsWith("#")) {
+  if (href.startsWith("/")) {
     href = origin.concat(href);
+  }
+  if (href.startsWith("#")) {
+    href = origin.concat(pathname).concat(href);
   }
   var text = link.text.trim();
   if (text.length == 0) {
